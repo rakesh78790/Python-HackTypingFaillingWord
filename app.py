@@ -10,7 +10,6 @@ bbox = None
 
 def main():
     global bbox, is_starting
-    time.sleep(0.5)
 
     # Specify bbox
     bbox = specify_image_bbox()
@@ -21,20 +20,20 @@ def main():
 
     # Show guide
     register_hotkey()
-    while not is_starting:
-        print('Press Ctrl + Alt + Shift + K to start')
-        print('Or Press Ctrl + Alt + Shift + L to stop')
-        time.sleep(2)
+    print('Start listening to hotkey')
+    print('Press Ctrl + Alt + Shift + K to start')
+    print('Or Press ESC to stop listening to hotkey')
 
-    keyboard.record()
+    keyboard.wait('esc')
+    is_starting = False
 
 
 def handle_start_hotkey():
-    global is_starting
+    global is_starting, start_hotkey
 
     keyboard.remove_hotkey(start_hotkey)
     print('Start hacking')
-    print('Press Ctrl + Alt + Shift + L to stop')
+    print('Press ESC to stop')
 
     is_starting = True
 
@@ -43,22 +42,14 @@ def handle_start_hotkey():
         send_keys_from_file(text_filepath)
         time.sleep(2)
 
-
-def handle_stop_hotkey():
-    global is_starting
-    keyboard.remove_hotkey(start_hotkey)
-    keyboard.remove_hotkey(stop_hotkey)
     print('Stop hacking')
-    is_starting = False
 
 
 def register_hotkey():
-    global start_hotkey, stop_hotkey
+    global start_hotkey
 
     start_hotkey = keyboard.add_hotkey(
         'ctrl+alt+shift+k', handle_start_hotkey, blocking=True, timeout=2)
-    stop_hotkey = keyboard.add_hotkey(
-        'ctrl+alt+shift+l', handle_stop_hotkey, blocking=True, timeout=2)
 
 
 main()
