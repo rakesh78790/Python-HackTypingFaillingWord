@@ -29,17 +29,24 @@ def extract_text_from_image(image):
     return './result.txt'
 
 
-def extract_text_from_a_region(bbox=None):
+def extract_text_from_screen_region(bbox=None):
     screenshot = take_screenshot(bbox)
     print('Take screenshot from bbox done')
 
-    image = make_image_blackwhite(screenshot)
-    print('Make image black and white done')
-
-    text_filepath = extract_text_from_image(image)
+    text_filepath = extract_text_from_image(screenshot)
     print('Extract text from image done')
 
     return text_filepath
 
 
+def extract_text_from_blackwhite_screen_region(bbox=None):
+    screenshot = take_screenshot(bbox)
+    print('Take screenshot from bbox done')
 
+    bw_image = make_image_blackwhite(screenshot)
+    print('Make image black and white done')
+
+    text_filepath = extract_text_from_image(bw_image)
+    print('Extract text from image done')
+
+    return text_filepath
