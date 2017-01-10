@@ -5,14 +5,14 @@ from image_utils import take_screenshot
 
 
 def make_image_blackwhite(image):
-    cv2.imshow('Image', image)
-    cv2.waitKey(0)
+    # cv2.imshow('Image', image)
+    # cv2.waitKey(0)
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     thresh = cv2.threshold(gray, 220, 255, cv2.THRESH_BINARY)[1]
 
-    cv2.imshow('Image', thresh)
-    cv2.waitKey(0)
+    # cv2.imshow('Image', thresh)
+    # cv2.waitKey(0)
 
     return thresh
 
