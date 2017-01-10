@@ -32,9 +32,9 @@ def create_region(image):
     cloned_image = image.copy()
 
     cv2.namedWindow("image", cv2.WND_PROP_FULLSCREEN)
-    cv2.moveWindow("image", 0, 0)
     cv2.setWindowProperty(
         "image", cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    cv2.moveWindow("image", 0, 0)
     cv2.setMouseCallback('image', draw_rect)
 
     while(1):
@@ -57,5 +57,5 @@ def specify_image_bbox():
     bbox = None
     if ref_points:
         bbox = (ref_points['lefttop'][0], ref_points['lefttop'][
-                  1], ref_points['rightbottom'][0], ref_points['rightbottom'][1])
+            1], ref_points['rightbottom'][0], ref_points['rightbottom'][1])
     return bbox
