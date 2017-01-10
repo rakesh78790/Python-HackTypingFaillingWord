@@ -2,7 +2,6 @@
 import cv2
 from subprocess import call
 from image_utils import take_screenshot
-import keyboard
 
 
 def make_image_blackwhite(image):
@@ -43,22 +42,4 @@ def extract_text_from_a_region(bbox=None):
     return text_filepath
 
 
-def send_keyboard_event(text_filepath):
-    # Read result from file
-    text_lines = []
-    with open(text_filepath) as f:
-        for line in f:
-            cleaned_line = line.strip()
-            if cleaned_line:
-                text_lines.append(cleaned_line)
 
-    if not text_lines:
-        print('Extracted text is empty')
-        return False
-
-    for line in reversed(text_lines):
-        print(line)
-        keyboard.write(line.lower())
-
-    print('Sending keys done')
-    return True
