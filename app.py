@@ -36,7 +36,7 @@ def start_hacking():
     while True:
         text_filepath = extract_text_from_blackwhite_screen_region(bbox)
         send_keys_from_file(text_filepath)
-        time.sleep(2)
+        time.sleep(0.05)
 
     print('Finish stopping hacking')
 
@@ -44,7 +44,7 @@ def start_hacking():
 def handle_start_hotkey():
     keyboard.remove_hotkey(start_hotkey)
     t = threading.Thread(target=start_hacking)
+    t.setDaemon(False)
     t.start()
 
 
-main()
